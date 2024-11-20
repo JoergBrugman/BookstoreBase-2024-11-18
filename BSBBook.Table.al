@@ -9,7 +9,7 @@ table 50100 "BSB Book"
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
-            NotBlank = true;
+            NotBlank = true; //[ ] Implementierung der Nummernserien fehlt noch
         }
         field(2; Description; Text[100])
         {
