@@ -1,3 +1,6 @@
+/// <summary>
+/// Das ist mein Masterdata "Book"
+/// </summary>
 table 50100 "BSB Book"
 {
     Caption = 'Book';
