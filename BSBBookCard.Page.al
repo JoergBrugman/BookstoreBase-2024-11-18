@@ -14,7 +14,7 @@ page 50100 "BSB Book Card"
                 Caption = 'General';
                 field("No."; Rec."No.")
                 {
-                    ToolTip = 'Specifies the value of the No. field.', Comment = '%';
+                    ToolTip = 'Specifies the value of the No. field.', Comment = 'de-DE=Gibt den Wert des Feldes Nr. an';
                     Importance = Promoted;
                 }
                 field(Description; Rec.Description)

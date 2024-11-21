@@ -11,5 +11,8 @@
     "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
     "CRS.ObjectNamePrefix": "BSB ",
     "CRS.OnSaveAlFileAction": "Rename",
-    "editor.snippetSuggestions": "bottom"
+    "editor.snippetSuggestions": "bottom",
+    "workbench.colorTheme": "Visual Studio Light",
+    "xliffSync.parseFromDeveloperNote": true,
+    "xliffSync.parseFromDeveloperNoteOverwrite": true
 }

@@ -3,7 +3,7 @@
 /// </summary>
 table 50100 "BSB Book"
 {
-    Caption = 'Book';
+    Caption = 'Book', Comment = 'de-DE=Buch';
     DataCaptionFields = "No.", Description;
     LookupPageId = "BSB Book List";
 
@@ -11,12 +11,12 @@ table 50100 "BSB Book"
     {
         field(1; "No."; Code[20])
         {
-            Caption = 'No.';
+            Caption = 'No.', Comment = 'de-DE=Nr.';
             NotBlank = true; //[ ] Implementierung der Nummernserien fehlt noch
         }
         field(2; Description; Text[100])
         {
-            Caption = 'Description';
+            Caption = 'Description', Comment = 'de-DE=Beschreibung';
 
             trigger OnValidate()
             begin
@@ -26,24 +26,25 @@ table 50100 "BSB Book"
         }
         field(3; "Search Description"; Code[100])
         {
-            Caption = 'Search Description'; //[x] Muss noch versorgt werden. Synch fehlt! In Tabelle 27 Item im Description-OnValidate orientieren
+            Caption = 'Search Description', Comment = 'de-DE=Suchbegriff';
+            //[x] Muss noch versorgt werden. Synch fehlt! In Tabelle 27 Item im Description-OnValidate orientieren
         }
         field(4; Blocked; Boolean)
         {
-            Caption = 'Blocked';
+            Caption = 'Blocked', Comment = 'de-DE=Gesperrt';
         }
         field(5; Type; Enum "BSB Book Type")
         {
-            Caption = 'Type';
+            Caption = 'Type', Comment = 'de-DE=Art';
         }
         field(7; Created; Date) //[x] automatisch versorgen mit Today, wenn ein Buch erstellt wird
         {
-            Caption = 'Created';
+            Caption = 'Created', Comment = 'de-DE=Erstellt am';
             Editable = false;
         }
         field(8; "Last Date Modified"; Date) //[x] automatisch versorgen mit Today, wenn ein Buch geändert wird
         {
-            Caption = 'Last Date Modified';
+            Caption = 'Last Date Modified', Comment = 'de-DE=Geädert am';
             Editable = false;
         }
         field(10; Author; Text[50])
@@ -52,28 +53,28 @@ table 50100 "BSB Book"
         }
         field(11; "Author Provision %"; Decimal)
         {
-            Caption = 'Author Provision %';
+            Caption = 'Author Provision %', Comment = 'de-DE=Autorenprovision %';
             DecimalPlaces = 0 : 2;
             MinValue = 0;
             MaxValue = 100;
         }
         field(15; ISBN; Code[20])
         {
-            Caption = 'ISBN';
+            Caption = 'ISBN', Comment = 'de-DE=ISBN';
         }
         field(16; "No. of Pages"; Integer)
         {
-            Caption = 'No. of Pages';
+            Caption = 'No. of Pages', Comment = 'de-DE=Anz. Seiten';
             MinValue = 0;
         }
         field(17; "Edition No."; Integer)
         {
-            Caption = 'Edition No.';
+            Caption = 'Edition No.', Comment = 'de-DE=Editionsnr.';
             MinValue = 0;
         }
         field(18; "Date of Publishing"; Date)
         {
-            Caption = 'Date of Publishing';
+            Caption = 'Date of Publishing', Comment = 'de-DE=Veröffentlichungsdatum';
         }
     }
 
@@ -106,7 +107,13 @@ table 50100 "BSB Book"
     end;
 
     trigger OnDelete()
+    var
+        IsHandled: Boolean;
     begin
+        OnBeforeOnDelete(Rec, xRec, IsHandled);
+        if IsHandled then
+            exit;
+
         Error(OnDeleteBookErr); //[x] Ein Buch darf nicht gelöscht
     end;
 
@@ -155,5 +162,10 @@ table 50100 "BSB Book"
     local procedure TestBlocked(BSBBook: Record "BSB Book")
     begin
         BSBBook.TestField(Blocked, false);
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeOnDelete(var Rec: Record "BSB Book"; var xRec: Record "BSB Book"; var IsHandled: Boolean)
+    begin
     end;
 }

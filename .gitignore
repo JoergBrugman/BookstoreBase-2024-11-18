@@ -1,3 +1,4 @@
 *.app
 rad.json
 .alcache
+*.g.xlf
