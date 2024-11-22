@@ -18,6 +18,18 @@
             "tenant": "default",
             "usePublicURLFromServer": true,
             "schemaUpdateMode": "ForceSync"
+        },
+        {
+            "name": "AL: Generated Attach request",
+            "request": "attach",
+            "type": "al",
+            "server": "http://bc",
+            "serverInstance": "BC",
+            "authentication": "Windows",
+            "port": 7049,
+            "sessionId": 851,
+            "breakOnNext": "WebClient",
+            "breakOnError": "ExcludeTry"
         }
     ]
 }
